@@ -10,18 +10,43 @@ const projects = [
     tasks: [] 
   }
 ]
-
+/** Create a project
+ * @body id:String
+ * @body title:String
+ * @body tasks:Array
+ */
 routes.post('/projects', (req, res) => {
 
-  const {id, title} = req.body;
+  const {id, title, tasks} = req.body;
 
-  projects.push({id, title});
+  projects.push({id, title, tasks});
 
   return res.json(projects);
 })
 
+/**List all projects */
 routes.get('/projects', (req, res) => {
   return res.json(projects);
+});
+
+/** Update a project title with @param id  */
+routes.put('/projects/:id', (req, res) => {
+  const { id } = req.params;
+  const { title } = req.body;
+
+  /*
+  for (project of projects) {
+    if(project.id == id) {
+      project.title = title;
+    }
+  }  
+  /*/
+  let project = projects.find(proj => (proj.id == id));
+  project.title = title;
+  //*/
+
+  return res.json(project);
+
 });
 
 module.exports = routes;
