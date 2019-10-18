@@ -1,6 +1,11 @@
 const express = require('express');
 
+const routes = require('./routes');
+
 const server = express();
+
+server.use(express.json());
+server.use(routes);
 
 server.get('/', (req, res) => {
   return res.json({
