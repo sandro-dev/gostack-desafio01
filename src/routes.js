@@ -2,7 +2,14 @@ const express = require('express');
 
 const routes = express.Router();
 
-const projects = [{id: String, title: String, tasks: [] }]
+//{id: String, title: String, tasks: Array }
+const projects = [  
+  { 
+    id: "1", 
+    title: "Novo projeto", 
+    tasks: [] 
+  }
+]
 
 routes.post('/projects', (req, res) => {
 
@@ -12,5 +19,9 @@ routes.post('/projects', (req, res) => {
 
   return res.json(projects);
 })
+
+routes.get('/projects', (req, res) => {
+  return res.json(projects);
+});
 
 module.exports = routes;
