@@ -55,5 +55,18 @@ routes.delete('/projects/:id', (req, res) => {
   return res.send();
 });
 
+/** Create a task in a project 
+ * @param {String} title 
+ * @param {String} id  
+ */
+routes.post('/projects/:id/tasks', (req, res) => {
+  const { id } = req.params;
+  const { title } = req.body;
+
+  let project = projects.find( proj => (proj.id == id));
+  project.tasks.push(title);
+
+  return res.json(project);
+});
 
 module.exports = routes;
