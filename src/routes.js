@@ -3,6 +3,7 @@ const express = require('express');
 const routes = express.Router();
 
 const projects = [];
+let countRequest = 0;
 
 /**
  * Middleware verifyProjectExists
@@ -23,6 +24,21 @@ function verifyProjectExists(req, res, next) {
   
   return next();
 }
+
+/**
+ * Middleware log the numbers of request
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ */
+function logRequestNumber(req, res, next) {
+  countRequest++;
+  console.log(`Request number #${countRequest}`);
+  return next(); 
+  
+}
+
+routes.use(logRequestNumber);
 
 /** Create a project
  * @param {String} id
@@ -52,7 +68,7 @@ routes.get('/projects', (req, res) => {
 /** Update a project title 
  * @param {String} id  
  */
-routes.put('/projects/:id', (req, res) => {
+routes.put('/projects/:id', verifyProjectExists, (req, res) => {
   const { id } = req.params;
   const { title } = req.body;
 
@@ -65,7 +81,7 @@ routes.put('/projects/:id', (req, res) => {
 /** Delete a project 
  * @param {String} id  
  */
-routes.delete('/projects/:id', (req, res) => {
+routes.delete('/projects/:id', verifyProjectExists, (req, res) => {
   const { id } = req.params;
 
   const projectIdx = projects.findIndex( proj => (proj.id == id));
@@ -79,7 +95,7 @@ routes.delete('/projects/:id', (req, res) => {
  * @param {String} title 
  * @param {String} id  
  */
-routes.post('/projects/:id/tasks', (req, res) => {
+routes.post('/projects/:id/tasks', verifyProjectExists, (req, res) => {
   const { id } = req.params;
   const { title } = req.body;
 
