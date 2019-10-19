@@ -4,6 +4,26 @@ const routes = express.Router();
 
 const projects = [];
 
+/**
+ * Middleware verifyProjectExists
+ * Verify if a project exists by id
+ * @param {String} id:String  
+ * @param {*} req request
+ * @param {*} res response
+ * @param {*} next function call next middleware
+ */
+function verifyProjectExists(req, res, next) {
+  const { id } = req.params;
+
+  const project = projects.find(proj => (proj.id == id));
+
+  if(!project){
+    return res.status(400).json({error: "This project did not found"});
+  }
+  
+  return next();
+}
+
 /** Create a project
  * @param {String} id
  * @param {String} title
