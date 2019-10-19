@@ -6,7 +6,7 @@
   Desafio 1: Conceitos do NodeJS
 </h3>
 
-## :rocket: Sobre o desafio
+## Sobre o desafio
 
 Esse foi meu primeiro desafio em NodeJS: Uma aplicação que armazena projetos e suas tarefas, desenvolvida do zero utilizando [Express](https://expressjs.com/pt-br/).
 
