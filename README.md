@@ -8,7 +8,7 @@
 
 ## :rocket: Sobre o desafio
 
-Crie uma aplicação para armazenar projetos e suas tarefas do zero utilizando [Express](https://expressjs.com/pt-br/).
+Esse foi meu primeiro desafio em NodeJS: Uma aplicação que armazena projetos e suas tarefas, desenvolvida do zero utilizando [Express](https://expressjs.com/pt-br/).
 
 ### Rotas
 
@@ -25,9 +25,9 @@ Crie uma aplicação para armazenar projetos e suas tarefas do zero utilizando [
 
 ### Middlewares
 
-- middleware que é utilizado em todas rotas que recebem o ID do projeto nos parâmetros da URL que verifica se o projeto com aquele ID existe.
+- `verifyProjectExists`: middleware que é utilizado em todas rotas que recebem o ID do projeto nos parâmetros da URL que verifica se o projeto com aquele ID existe.
 
-- middleware global chamado em todas requisições que imprime (`console.log`) uma contagem de quantas requisições foram feitas na aplicação até então;
+- `logRequestNumber`: middleware global chamado em todas requisições que imprime (`console.log`) uma contagem de quantas requisições foram feitas na aplicação até então;
 
 ---
 Desenvolvido por Sandro Santos
